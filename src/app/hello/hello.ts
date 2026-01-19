@@ -8,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class Hello {
 
+  protected title = 'Welcome to Modern Angular!';
+
+  protected isDisabled = false;
+
+  protected onclick(): void {
+    console.log('Button clicked!');
+    this.isDisabled = !this.isDisabled;
+  }
 }
