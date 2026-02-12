@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-hello',
@@ -18,6 +18,10 @@ export class Hello {
   }
 
   protected count = signal(0);
+
+  // Computed signal that calculates double the count value. Only re-evaluates when 'count' changes.
+  // We only use computed signals only for computed values.
+  protected doubleCount = computed(() => this.count() * 2);
 
   protected increaseCounter(): void {
     this.count.update(value => value + 1);
