@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-hello',
@@ -22,6 +22,12 @@ export class Hello {
   // Computed signal that calculates double the count value. Only re-evaluates when 'count' changes.
   // We only use computed signals only for computed values.
   protected doubleCount = computed(() => this.count() * 2);
+
+  // The difference between effect and computed is that effect is used for side effects and do not returns values,
+  // while computed is used for derived state and returns value.
+  protected countLog = effect(() => {
+    console.log(`Count value changed: ${this.count()}`);
+  });
 
   protected increaseCounter(): void {
     this.count.update(value => value + 1);
